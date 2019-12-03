@@ -1,13 +1,12 @@
 #!/bin/sh
-apt-get update -y
-apt-get --assume-yes install python-pip unzip curl
-pip install awscli==1.15.45
+yum install python-pip unzip curl
+sudo pip install awscli==1.15.45
 #####################
 # sync the codebase #
 #####################
-aws s3 sync s3://test-automation-pydata /home/ubuntu/test_automation/
+sudo aws s3 sync s3://test-automation-pydata /home/ec2-user/test_automation/
 
-chown ubuntu:ubuntu -R /home/ubuntu/test_automation
+chown ec2-user:ec2-user -R /home/ec2-user/test_automation
 
 # curl --header "Content-Type: application/json" --request POST --data '{"text":"NER v3 codebase and word2vec vectors synced", "username":"Trainer", "icon_emoji": ":spacy:"}' https://hooks.slack.com/services/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
 
@@ -26,7 +25,7 @@ chmod +x /opt/conda/etc/profile.d/conda.sh
 # curl --header "Content-Type: application/json" --request POST --data '{"text":"Setting up python enviroment..", "username":"Trainer", "icon_emoji": ":spacy:"}' https://hooks.slack.com/services/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
 
 # Set up python enviroment
-conda env create -f environment_ubuntu.yml -n train_env
+conda env create -f test_automation/environment_ubuntu.yml -n train_env
 conda activate train_env
 
 # To avoid RuntimeError of click
@@ -37,13 +36,13 @@ export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
 
 # start training
-python /home/ubuntu/test_automation/train.py
+sudo python /home/ec2-user/test_automation/train.py
 # curl --header "Content-Type: application/json" --request POST --data '{"text":"NER v3 training done!", "username":"Trainer", "icon_emoji": ":spacy:"}' https://hooks.slack.com/services/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
 
-aws s3 cp /home/ubuntu/test_automation/iris_model.pkl s3://test-automation-pydata/
+sudo aws s3 cp /home/ec2-user/test_automation/iris_model.pkl s3://test-automation-pydata/
 
 # curl --header "Content-Type: application/json" --request POST --data '{"text":"NER v3 model pushed to `s3://cypher-ner/uznani/`", "username":"Trainer", "icon_emoji": ":spacy:"}' https://hooks.slack.com/services/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
 
 # aws s3 cp /var/log/cloud-init-output.log s3://cypher-ner/uznani/uznani_ner_model/
 
-# shutdown now
+shutdown now

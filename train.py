@@ -6,7 +6,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.externals import joblib
 
-data = pd.read_csv('/home/ubuntu/test_automation/DATA/Iris.csv')
+data = pd.read_csv('/home/ec2-user/test_automation/DATA/Iris.csv')
 
 X = data.drop(['Id', 'Species'], axis=1)
 y = data['Species']
@@ -24,4 +24,4 @@ print(y_train.shape)
 print(X_test.shape)
 print(y_test.shape)
 
-joblib.dump(logreg, '/home/ubuntu/test_automation/iris_model.pkl')
+joblib.dump(logreg, '/home/ec2-user/test_automation/iris_model.pkl')
