@@ -26,7 +26,7 @@ chmod +x /opt/conda/etc/profile.d/conda.sh
 # curl --header "Content-Type: application/json" --request POST --data '{"text":"Setting up python enviroment..", "username":"Trainer", "icon_emoji": ":spacy:"}' https://hooks.slack.com/services/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
 
 # Set up python enviroment
-conda create --name train_env python=3.6
+conda env create -f environment_ubuntu.yml -n train_env
 conda activate train_env
 
 # To avoid RuntimeError of click
@@ -37,7 +37,7 @@ export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
 
 # start training
-python test_automation/train.py
+python /home/ubuntu/test_automation/train.py
 # curl --header "Content-Type: application/json" --request POST --data '{"text":"NER v3 training done!", "username":"Trainer", "icon_emoji": ":spacy:"}' https://hooks.slack.com/services/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
 
 aws s3 cp /home/ubuntu/test_automation/iris_model.pkl s3://test-automation-pydata/
