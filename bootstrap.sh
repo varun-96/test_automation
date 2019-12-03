@@ -1,12 +1,12 @@
 #!/bin/sh
-yum install python-pip unzip curl
+sudo yum install python-pip unzip curl
 sudo pip install awscli==1.15.45
 #####################
 # sync the codebase #
 #####################
 sudo aws s3 sync s3://test-automation-pydata /home/ec2-user/test_automation/
 
-chown ec2-user:ec2-user -R /home/ec2-user/test_automation
+sudo chown ec2-user:ec2-user -R /home/ec2-user/test_automation
 
 # curl --header "Content-Type: application/json" --request POST --data '{"text":"NER v3 codebase and word2vec vectors synced", "username":"Trainer", "icon_emoji": ":spacy:"}' https://hooks.slack.com/services/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
 
