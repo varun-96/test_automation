@@ -11,13 +11,6 @@ chown ubuntu:ubuntu -R /home/ubuntu/test_automation
 
 # curl --header "Content-Type: application/json" --request POST --data '{"text":"NER v3 codebase and word2vec vectors synced", "username":"Trainer", "icon_emoji": ":spacy:"}' https://hooks.slack.com/services/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
 
-###########################
-# Download tagged dataset #
-###########################
-aws s3 cp s3://test-automation-pydata/DATA/ /home/ubuntu/test_automation/data/
-aws s3 cp s3://test-automation-pydata/CODEBASE/ /home/ubuntu/test_automation/
-
-
 ####################################
 # Set up conda environment #
 ####################################

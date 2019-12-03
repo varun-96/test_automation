@@ -19,7 +19,7 @@ before_deploy:
 - aws configure set default.region us-east-1
 deploy:
   provider: script
-  script: python launch_server.py
+  script: bash deployment.sh
   on:
     branch: master
 env:
