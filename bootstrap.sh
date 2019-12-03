@@ -46,4 +46,4 @@ aws s3 cp /home/ubuntu/test_automation/iris_model.pkl s3://test-automation-pydat
 
 # aws s3 cp /var/log/cloud-init-output.log s3://cypher-ner/uznani/uznani_ner_model/
 
-shutdown now
+# shutdown now
