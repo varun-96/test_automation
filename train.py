@@ -4,14 +4,13 @@ import pandas as pd
 from sklearn import metrics
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
+from sklearn.externals import joblib
 
-data = pd.read_csv('Iris.csv')
+data = pd.read_csv('DATA/Iris.csv')
 
 X = data.drop(['Id', 'Species'], axis=1)
 y = data['Species']
-# print(X.head())
 print(X.shape)
-# print(y.head())
 print(y.shape)
 
 logreg = LogisticRegression()
@@ -24,3 +23,5 @@ print(X_train.shape)
 print(y_train.shape)
 print(X_test.shape)
 print(y_test.shape)
+
+joblib.dump(logreg, 'iris_model.pkl')

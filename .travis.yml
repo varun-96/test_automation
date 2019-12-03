@@ -1,0 +1,28 @@
+language: python
+python:
+- 3.6
+install:
+- sudo apt-get update
+- wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+- bash miniconda.sh -b -p $HOME/miniconda
+- export PATH="$HOME/miniconda/bin:$PATH"
+- hash -r
+- conda config --set always_yes yes --set changeps1 no
+- conda info -a
+- conda init bash
+- source ~/.bashrc
+- conda env create -f environment_ubuntu.yml
+- conda activate train_env
+before_deploy:
+- pip install awscli boto3 configparser
+- export PATH=$PATH:$HOME/.local/bin
+- aws configure set default.region us-east-1
+deploy:
+  provider: script
+  script: python launch_server.py
+  on:
+    branch: master
+env:
+  global:
+  - secure: egefdHhvJEcv3/UtieDT7KoJpd4pHDn2N7bxs1gor4vL7Pec7Cy5rVmDFtExSD1nxgVRkCTps4gMmiHByJPRt1lGH8yiMlGTK/H/l7uc+kSYneIqsLrmc/Gz/6XwL2tU9urXuvTB9ROnsGuIHHngeV36o8nrKGx3Yi62yt8jAMBLd1uWQOxweAlElLhDA+qhladoAkx3wYdhA/zaOBR+/i59s0m57cBUGdRWCk665l+mxb/VcjSru5TAcANIS3KvM6gD05xlurALqUD9T402UzbdtYo8yFDEiTt8XHmO+S+WMVvox1NKHJe/Lu2+kiLExN7d29ZX2DdyVEUZOya3bsVUKI+02us7tkabZp0etQPQXqncJ9/fTE7WBq1oiFSxs8F2VyGvNopBrcYe2Rn7oMohnDc0YVAFyaxoCMy3829BNVUjaAc0ii77f83ddsXCky6uc7S+dwhYZ2+V49jEjfSiXA94LUUcZVNKBsTtNe+ezsCuluZJO8HRkl/buMUHRIC2q5YC9ZnXETxwGGPHqkm2b2VI3ooVSJUAJ8yxyEjKwm4ZHePKC8eHSKCg82Xuf2fpTNDrWS35hQEQZuq8Y6yc6Mvrtq9KX0RIN6O+Ju+mODefQrAzENKNar4hs/u9BYdpQQFeJVTUzGOL4DNnxfZUCmWaLhsCQybshJsK7wA=
+  - secure: Ym9ETVE9oXimvjVqb5bMYUAFfoNfhCnfanD1bstNsMuJ6LJCHnV00DtIibogAj2j6hWTFMv+slkmK8vRZR9wnLoSxtIHGKbTNu7TCbGLYWZSHip08MgFQ9taIB9rOYWpocpSwEgLBr4hZW9VJ+S+oduuXCfOWFEKHQIkE+Ox2iFVRJjJMOZzrrLZhR2QfJ6pMPoRIU6TP/2RetS78zGG/+VeY7FlwtmEVppHtHH9snODw/mvy2VkroDR+HqaGDyZg4ToQqCl2R6Mj609ihavlfjmbjDXKDEXwpDRUsfha4z/u4YzTlSzG70C6FA4Tomtk9lJhtLXEwNQkG4jV1cAMgqLBW6TQ5qqeNsX4npOUYujH68EcvLYaUCTb/vAR8+PaacZW4qm2FMzFl6G6Firuyouwm9baUZhS8fsK/N92KIk/HJtJcdEPfYFbln7Jj9EsZgOYDNwHjCcjE5qGK4YZhlRF9HzZ/XIJrKK+GaTZPJA0cp1bSUztCai8a/1Y+BeXOc7hmxt340173mMtUFEXr1cI6yc75UAcoYe/nLnN9qIjwaXjHsR0oirW98afhguXOCOJL+iW1guSsvS1aUzRuXRC+KY0XJsKxBFvJ8TBRAdeShmIIq0kgp7/l1muaRVWymjgL2cqAEjIkKpWa3685CvMr3m0eybSUX9GqLrSio=
