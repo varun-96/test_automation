@@ -1,4 +1,6 @@
 #!/bin/sh
+set -e
+
 sudo yum install python-pip unzip curl
 sudo pip install awscli==1.15.45
 #####################
@@ -14,7 +16,7 @@ sudo chown ec2-user:ec2-user -R /home/ec2-user/test_automation
 # Set up conda environment #
 ####################################
 wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh && \
-  sudo  /bin/bash miniconda.sh -b -p /opt/conda && \
+  sudo /bin/bash miniconda.sh -b -p /opt/conda && \
    sudo ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
 
 
