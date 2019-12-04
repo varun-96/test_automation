@@ -1,7 +1,6 @@
 #!/bin/sh
-set -e
 
-sudo yum install python-pip unzip curl
+sudo yum install python-pip unzip curl -y
 sudo pip install awscli==1.15.45
 #####################
 # sync the codebase #
@@ -23,9 +22,9 @@ wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.
 # avail `conda` command in PATH
 sudo chmod +x /opt/conda/etc/profile.d/conda.sh
 bash /opt/conda/etc/profile.d/conda.sh
+export PATH="/opt/conda/bin:$PATH"
 conda init bash
 source .bashrc
-export PATH="/opt/conda/bin:$PATH"
 
 # curl --header "Content-Type: application/json" --request POST --data '{"text":"Setting up python enviroment..", "username":"Trainer", "icon_emoji": ":spacy:"}' https://hooks.slack.com/services/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
 
@@ -41,7 +40,7 @@ export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
 
 # start training
-sudo python /home/ec2-user/test_automation/train.py
+python /home/ec2-user/test_automation/train.py
 # curl --header "Content-Type: application/json" --request POST --data '{"text":"NER v3 training done!", "username":"Trainer", "icon_emoji": ":spacy:"}' https://hooks.slack.com/services/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
 
 sudo aws s3 cp /home/ec2-user/test_automation/iris_model.pkl s3://test-automation-pydata/
@@ -50,4 +49,4 @@ sudo aws s3 cp /home/ec2-user/test_automation/iris_model.pkl s3://test-automatio
 
 # aws s3 cp /var/log/cloud-init-output.log s3://cypher-ner/uznani/uznani_ner_model/
 
-# shutdown now
+shutdown now
