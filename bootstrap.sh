@@ -24,12 +24,12 @@ sudo chmod +x /opt/conda/etc/profile.d/conda.sh
 bash /opt/conda/etc/profile.d/conda.sh
 export PATH="/opt/conda/bin:$PATH"
 conda init bash
-source .bashrc
+source ~/.bashrc
 
 # curl --header "Content-Type: application/json" --request POST --data '{"text":"Setting up python enviroment..", "username":"Trainer", "icon_emoji": ":spacy:"}' https://hooks.slack.com/services/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
 
 # Set up python enviroment
-conda env create -f test_automation/environment_ubuntu.yml -n train_env
+conda env create -f /home/ec2-user/test_automation/environment_ubuntu.yml -n train_env
 conda activate train_env
 
 # To avoid RuntimeError of click
