@@ -19,8 +19,11 @@ wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.
 
 
 # avail `conda` command in PATH
-chmod +x /opt/conda/etc/profile.d/conda.sh
-. /opt/conda/etc/profile.d/conda.sh
+sudo chmod +x /opt/conda/etc/profile.d/conda.sh
+bash /opt/conda/etc/profile.d/conda.sh
+conda init bash
+source .bashrc
+export PATH="/opt/conda/bin:$PATH"
 
 # curl --header "Content-Type: application/json" --request POST --data '{"text":"Setting up python enviroment..", "username":"Trainer", "icon_emoji": ":spacy:"}' https://hooks.slack.com/services/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
 
