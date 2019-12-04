@@ -13,14 +13,14 @@ sudo chown ec2-user:ec2-user -R /home/ec2-user/test_automation
 ####################################
 # Set up conda environment #
 ####################################
-# wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh && \
-#   sudo  /bin/bash miniconda.sh -b -p /opt/conda && \
-#    sudo ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
+wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh && \
+  sudo  /bin/bash miniconda.sh -b -p /opt/conda && \
+   sudo ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
 
 
 # avail `conda` command in PATH
-# chmod +x /opt/conda/etc/profile.d/conda.sh
-# . /opt/conda/etc/profile.d/conda.sh
+chmod +x /opt/conda/etc/profile.d/conda.sh
+. /opt/conda/etc/profile.d/conda.sh
 
 # curl --header "Content-Type: application/json" --request POST --data '{"text":"Setting up python enviroment..", "username":"Trainer", "icon_emoji": ":spacy:"}' https://hooks.slack.com/services/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
 
@@ -45,4 +45,4 @@ sudo aws s3 cp /home/ec2-user/test_automation/iris_model.pkl s3://test-automatio
 
 # aws s3 cp /var/log/cloud-init-output.log s3://cypher-ner/uznani/uznani_ner_model/
 
-shutdown now
+# shutdown now
