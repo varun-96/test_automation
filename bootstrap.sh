@@ -49,4 +49,4 @@ sudo aws s3 cp /home/ec2-user/test_automation/iris_model.pkl s3://test-automatio
 
 # aws s3 cp /var/log/cloud-init-output.log s3://cypher-ner/uznani/uznani_ner_model/
 
-shutdown now
+# shutdown now
